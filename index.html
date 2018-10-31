@@ -9,6 +9,41 @@
     <title>Pig Dice</title>
   </head>
   <body>
+    <div class="container">
     <h1>Pig Dice</h1>
+    <form id="players-form">
+      <div class="form-group">
+        <label for="player1Name">Player 1 name: </label>
+        <input type="text" id="player1Name" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="player2Name">Player 2 name: </label>
+        <input type="text" id="player2Name" class="form-control">
+      </div>
+      <button type="submit" name="button" class="btn btn-primary">Play!</button>
+    </form>
+    <div id="game">
+      <div class="row">
+        <div class="col-md-5 player">
+          <h2><span class="player1Name"></span></h2>
+          <h2><span class="diceRoll1"></span></h2>
+          <button type="button" id="player1Roll" class="btn btn-primary">Roll</button>
+          <h3>Turn Points: <span class="player1TurnPoints"></span></h3>
+          <h3>Total Points: <span class="player1TotalPoints"></span></h3>
+          <button type="button" id="hold" class="btn btn-danger">Hold</button>
+          <button type="button" id="endTurn" class="btn btn-danger">End Turn</button>
+        </div>
+        <!-- <div class="col-md-5 player">
+          <h2><span class="player2Name"></span></h2>
+          <h3><span class="diceRoll2"></span></h3>
+          <button type="button" id="player2Roll" class="btn btn-primary">Roll</button>
+          <h3>Turn Points: <span class="player2TurnPoints"></span></h3>
+          <h3>Total Points: <span class="player2TotalPoints"></span></h3>
+          <button type="button" id="endTurnPlayer2" class="btn btn-danger">End Turn</button>
+        </div>
+      </div> -->
+
+    </div>
+  </div>
   </body>
 </html>

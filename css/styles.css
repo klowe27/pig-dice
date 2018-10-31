@@ -1,0 +1,14 @@
+#game {
+  display: none;
+}
+
+.player {
+  background-color: gray;
+  text-align: center;
+  padding: 15px;
+  margin: 15px;
+}
+
+button {
+  margin: 20px;
+}
