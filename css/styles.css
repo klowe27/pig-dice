@@ -3,12 +3,24 @@
 }
 
 .player {
-  background-color: gray;
+  background-color: #F5F5F5;
   text-align: center;
   padding: 15px;
   margin: 15px;
 }
 
 button {
-  margin: 20px;
+  margin: 10px;
+}
+
+h1 {
+  background-color: #4682b4;
+  padding: 30px;
+  font-weight: lighter;
+  text-align: center;
+  color: white;
+}
+
+.points {
+  font-size: 100px;
 }
