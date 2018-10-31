@@ -31,6 +31,23 @@ Players.prototype.calculateTurnPoints = function(dice1, dice2){
   }
 }
 
+Players.prototype.hold = function(){
+  $("#hold").addClass("disabled");
+  $("#roll").addClass("disabled");
+  this.totalPoints += this.turnPoints;
+  this.turnPoints = 0;
+}
+
+Players.prototype.checkWinStatus = function() {
+  if (this.totalPoints >= 100) {
+    alert("you won!");
+  }
+}
+
+function diceRoll() {
+  return Math.floor(Math.random()*6 + 1);
+}
+
 function diceImg1(roll) {
   if (roll === 1 ) {
     $(".diceRoll1").html("<img src='img/dice1.jpeg'>");
@@ -71,23 +88,6 @@ function diceImg2(roll) {
   else {
     $(".diceRoll2").html("<img src='img/dice6.jpeg'>");
   }
-}
-
-Players.prototype.hold = function(){
-  $("#hold").addClass("disabled");
-  $("#roll").addClass("disabled");
-  this.totalPoints += this.turnPoints;
-  this.turnPoints = 0;
-}
-
-Players.prototype.checkWinStatus = function() {
-  if (this.totalPoints >= 100) {
-    alert("you won!");
-  }
-}
-
-function diceRoll() {
-  return Math.floor(Math.random()*6 + 1);
 }
 
 
