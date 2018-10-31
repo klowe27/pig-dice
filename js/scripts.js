@@ -18,12 +18,10 @@ Players.prototype.calculateTurnPoints = function(dice1, dice2){
 
   if (dice1 === 1 && dice2 === 1){
     this.totalPoints = 0;
-    $("#hold").addClass("disabled");
-    $("#roll").addClass("disabled");
+    $("#roll").hide();
   } else if (dice1 === 1 || dice2 === 1){
     this.turnPoints = 0;
-    $("#hold").addClass("disabled");
-    $("#roll").addClass("disabled");
+    $("#roll").hide();
 
   } else {
     var diceTotal = dice1 + dice2;
@@ -32,8 +30,7 @@ Players.prototype.calculateTurnPoints = function(dice1, dice2){
 }
 
 Players.prototype.hold = function(){
-  $("#hold").addClass("disabled");
-  $("#roll").addClass("disabled");
+  $("#roll").hide();
   this.totalPoints += this.turnPoints;
   this.turnPoints = 0;
 }
@@ -139,7 +136,19 @@ $(document).ready(function(){
     });
   });
 
-  $("#hold").click(function(){
+  // $("#hold").click(function(){
+  //   pigDice.players.forEach(function(player){
+  //     if (player.turn === true){
+  //       player.hold();
+  //       $(".turnPoints").text(player.turnPoints);
+  //       player.checkWinStatus();
+  //     }
+  //   });
+  //   $(".totalPoints1").text(player1.totalPoints);
+  //   $(".totalPoints2").text(player2.totalPoints);
+  // });
+
+  $("#endTurn").click(function(){
     pigDice.players.forEach(function(player){
       if (player.turn === true){
         player.hold();
@@ -147,13 +156,8 @@ $(document).ready(function(){
         player.checkWinStatus();
       }
     });
-    $(".totalPoints1").text(player1.totalPoints);
-    $(".totalPoints2").text(player2.totalPoints);
-  });
 
-  $("#endTurn").click(function(){
-    $("#hold").removeClass("disabled");
-    $("#roll").removeClass("disabled");
+    $("#roll").show();
     $(".totalPoints1").text(player1.totalPoints);
     $(".totalPoints2").text(player2.totalPoints);
     var nextPlayer;
