@@ -22,20 +22,26 @@
       </div>
       <button type="submit" name="button" class="btn btn-primary">Play!</button>
     </form>
+
     <div id="game">
       <div class="row">
         <div id="player1" class="col-md-3 player">
           <h2><span class="player1"></h2>
           <h3 class="points"><span class="totalPoints1"></span></h3>
         </div>
+
         <div class="col-md-5 player">
           <h2><span class="playerName"></span></h2>
-          <h2><span class="diceRoll"></span></h2>
+          <div>
+            <span class="diceRoll1"></span>
+            <span class="diceRoll2"></span>
+          </div>
           <button type="button" id="roll" class="btn btn-primary">Roll</button>
           <h3>Turn Points: <span class="turnPoints"></span></h3>
           <button type="button" id="hold" class="btn btn-danger">Hold</button>
           <button type="button" id="endTurn" class="btn btn-danger">End Turn</button>
         </div>
+
         <div id="player2" class="col-md-3 player">
           <h2><span class="player2"></h2>
           <h3 class="points"><span class="totalPoints2"></span></h3>

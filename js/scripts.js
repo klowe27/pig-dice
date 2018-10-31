@@ -14,35 +14,62 @@ function Players(name, turn=false){
   this.turnPoints = 0;
 }
 
-Players.prototype.calculateTurnPoints = function(diceRoll){
+Players.prototype.calculateTurnPoints = function(dice1, dice2){
 
-  if (diceRoll === 1){
+  if (dice1 === 1 && dice2 === 1){
+    this.totalPoints = 0;
+    $("#hold").addClass("disabled");
+    $("#roll").addClass("disabled");
+  } else if (dice1 === 1 || dice2 === 1){
     this.turnPoints = 0;
     $("#hold").addClass("disabled");
     $("#roll").addClass("disabled");
+
   } else {
-    this.turnPoints += diceRoll;
+    var diceTotal = dice1 + dice2;
+    this.turnPoints += diceTotal
   }
 }
 
-function diceImg(roll) {
+function diceImg1(roll) {
   if (roll === 1 ) {
-    $(".diceRoll").html("<img src='img/dice1.jpeg'>");
+    $(".diceRoll1").html("<img src='img/dice1.jpeg'>");
   }
   else if (roll === 2) {
-    $(".diceRoll").html("<img src='img/dice2.jpeg'>");
+    $(".diceRoll1").html("<img src='img/dice2.jpeg'>");
   }
   else if (roll === 3) {
-    $(".diceRoll").html("<img src='img/dice3.jpeg'>");
+    $(".diceRoll1").html("<img src='img/dice3.jpeg'>");
   }
   else if (roll === 4) {
-    $(".diceRoll").html("<img src='img/dice4.jpeg'>");
+    $(".diceRoll1").html("<img src='img/dice4.jpeg'>");
   }
   else if (roll === 5) {
-    $(".diceRoll").html("<img src='img/dice5.jpeg'>");
+    $(".diceRoll1").html("<img src='img/dice5.jpeg'>");
   }
   else {
-    $(".diceRoll").html("<img src='img/dice6.jpeg'>");
+    $(".diceRoll1").html("<img src='img/dice6.jpeg'>");
+  }
+}
+
+function diceImg2(roll) {
+  if (roll === 1 ) {
+    $(".diceRoll2").html("<img src='img/dice1.jpeg'>");
+  }
+  else if (roll === 2) {
+    $(".diceRoll2").html("<img src='img/dice2.jpeg'>");
+  }
+  else if (roll === 3) {
+    $(".diceRoll2").html("<img src='img/dice3.jpeg'>");
+  }
+  else if (roll === 4) {
+    $(".diceRoll2").html("<img src='img/dice4.jpeg'>");
+  }
+  else if (roll === 5) {
+    $(".diceRoll2").html("<img src='img/dice5.jpeg'>");
+  }
+  else {
+    $(".diceRoll2").html("<img src='img/dice6.jpeg'>");
   }
 }
 
@@ -54,7 +81,7 @@ Players.prototype.hold = function(){
 }
 
 Players.prototype.checkWinStatus = function() {
-  if (this.totalPoints >= 10) {
+  if (this.totalPoints >= 100) {
     alert("you won!");
   }
 }
@@ -100,11 +127,13 @@ $(document).ready(function(){
   });
 
   $("#roll").click(function(){
-    var roll = diceRoll();
-    diceImg(roll);
+    var roll1 = diceRoll();
+    var roll2 = diceRoll();
+    diceImg1(roll1);
+    diceImg2(roll2);
     pigDice.players.forEach(function(player){
       if (player.turn === true){
-        player.calculateTurnPoints(roll);
+        player.calculateTurnPoints(roll1, roll2);
         $(".turnPoints").text(player.turnPoints);
       }
     });
@@ -125,6 +154,8 @@ $(document).ready(function(){
   $("#endTurn").click(function(){
     $("#hold").removeClass("disabled");
     $("#roll").removeClass("disabled");
+    $(".totalPoints1").text(player1.totalPoints);
+    $(".totalPoints2").text(player2.totalPoints);
     var nextPlayer;
     pigDice.players.forEach(function(player){
       if (player.turn === false){
@@ -143,7 +174,8 @@ $(document).ready(function(){
     });
     pigDice.players.forEach(function(player){
       if (player.turn === true){
-        $(".diceRoll").text("");
+        $(".diceRoll1").text("");
+        $(".diceRoll2").text("");
         $(".playerName").text(player.name);
         $(".turnPoints").text(player.turnPoints);
         $(".totalPoints").text(player.totalPoints);
