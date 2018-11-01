@@ -4,14 +4,17 @@ var pigDice = new PigDice();
 var player1;
 var player2;
 
+var roll1;
+var roll2;
+
 function roll(){
-  var roll1 = diceRoll();
-  var roll2 = diceRoll();
+  roll1 = diceRoll();
+  roll2 = diceRoll();
   diceImg1(roll1);
   diceImg2(roll2);
   pigDice.players.forEach(function(player){
     if (player.turn === true){
-      player.calculateTurnPoints(roll1, roll2);
+      rolled1 = player.calculateTurnPoints(roll1, roll2);
       $(".turnPoints").text(player.turnPoints);
     }
   });
@@ -28,22 +31,7 @@ function endTurn() {
   $("#roll").show();
   $(".totalPoints1").text(player1.totalPoints);
   $(".totalPoints2").text(player2.totalPoints);
-  changeTurn();
-  pigDice.players.forEach(function(player){
-    if (player.turn === true){
-      $(".diceRoll1").text("");
-      $(".diceRoll2").text("");
-      $(".playerName").text(player.name);
-      $(".turnPoints").text(player.turnPoints);
-      $(".totalPoints").text(player.totalPoints);
-      if (player.name === "computer"){
-        computerTurn();
-      }
-    }
-  });
-}
 
-function changeTurn() {
   var nextPlayer;
   pigDice.players.forEach(function(player){
     if (player.turn === false){
@@ -60,6 +48,24 @@ function changeTurn() {
       player.turn = true;
     }
   });
+  pigDice.players.forEach(function(player){
+    if (player.turn === true){
+      $(".diceRoll1").html("<img src='img/dice0.jpeg'>");
+      $(".diceRoll2").html("<img src='img/dice0.jpeg'>");
+      $(".playerName").text(player.name);
+      $(".turnPoints").text(player.turnPoints);
+      $(".totalPoints").text(player.totalPoints);
+      if (player.name === "computer"){
+        $("#roll").hide();
+        $("#endTurn").hide();
+        computerTurn();
+      }
+      if (player.name !== "computer") {
+        $("#roll").show();
+        $("#endTurn").show();
+      }
+    }
+  });
 }
 
 function diceRoll() {
@@ -67,56 +73,22 @@ function diceRoll() {
 }
 
 function diceImg1(roll) {
-  if (roll === 1 ) {
-    $(".diceRoll1").html("<img src='img/dice1.jpeg'>");
-  }
-  else if (roll === 2) {
-    $(".diceRoll1").html("<img src='img/dice2.jpeg'>");
-  }
-  else if (roll === 3) {
-    $(".diceRoll1").html("<img src='img/dice3.jpeg'>");
-  }
-  else if (roll === 4) {
-    $(".diceRoll1").html("<img src='img/dice4.jpeg'>");
-  }
-  else if (roll === 5) {
-    $(".diceRoll1").html("<img src='img/dice5.jpeg'>");
-  }
-  else {
-    $(".diceRoll1").html("<img src='img/dice6.jpeg'>");
-  }
+  $(".diceRoll1").html("<img src='img/dice" + roll + ".jpeg'>");
 }
 
 function diceImg2(roll) {
-  if (roll === 1 ) {
-    $(".diceRoll2").html("<img src='img/dice1.jpeg'>");
-  }
-  else if (roll === 2) {
-    $(".diceRoll2").html("<img src='img/dice2.jpeg'>");
-  }
-  else if (roll === 3) {
-    $(".diceRoll2").html("<img src='img/dice3.jpeg'>");
-  }
-  else if (roll === 4) {
-    $(".diceRoll2").html("<img src='img/dice4.jpeg'>");
-  }
-  else if (roll === 5) {
-    $(".diceRoll2").html("<img src='img/dice5.jpeg'>");
-  }
-  else {
-    $(".diceRoll2").html("<img src='img/dice6.jpeg'>");
-  }
-}
-
-
-function delay(functionToCall) {
-  var timeoutID = window.setTimeout(functionToCall, 3000);
-  window.clearTimeout(timeoutID);
+  $(".diceRoll2").html("<img src='img/dice" + roll + ".jpeg'>");
 }
 
 function computerTurn() {
+  // debugger;
   setTimeout(roll, 1000);
-  setTimeout(endTurn, 3000);
+  if (roll1 === 1 || roll2 === 1) {
+    setTimeout(endTurn, 3000);
+  } else {
+    setTimeout(roll, 3000);
+    setTimeout(endTurn, 5000);
+  }
 }
 
 function PigDice(){
@@ -139,15 +111,9 @@ Players.prototype.calculateTurnPoints = function(dice1, dice2){
     this.totalPoints = 0;
     this.turnPoints = 0;
     $("#roll").hide();
-    if (pigDice.players.name === "computer") {
-      endTurn();
-    }
   } else if (dice1 === 1 || dice2 === 1){
     this.turnPoints = 0;
     $("#roll").hide();
-    if (pigDice.players.name === "computer") {
-      endTurn();
-    }
   } else {
     var diceTotal = dice1 + dice2;
     this.turnPoints += diceTotal
@@ -160,12 +126,12 @@ Players.prototype.endTurn = function(){
 }
 
 Players.prototype.checkWinStatus = function() {
-  if (this.totalPoints >= 30) {
+  if (this.totalPoints >= 100) {
     if (player1.turn === true) {
-      $("#player1").css("background-color", "green");
+      $("#player1").css("background-color", "#00e6ac");
       $(".player1Winner").show();
     } else if (player2.turn === true) {
-      $("#player2").css("background-color", "green");
+      $("#player2").css("background-color", "#00e6ac");
       $(".player2Winner").show();
     }
   }

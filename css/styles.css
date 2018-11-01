@@ -1,8 +1,20 @@
 #game {
   display: none;
+  margin-top: 100px;
 }
 #players-form{
   display: none;
+  margin-top: 70px;
+}
+
+body {
+  font-family: courier;
+  background-color: gray;
+}
+
+.container {
+  background-color: black;
+  padding: 40px;
 }
 
 .player {
@@ -12,16 +24,55 @@
   margin: 15px;
 }
 
+.gameButton {
+  border: none;
+  background-color: #ff3333;
+  padding: 10px;
+  width: 150px;
+}
+
+.gameButton:hover {
+  background-color: #00e6ac;
+}
+
 button {
   margin: 10px;
 }
 
-h1 {
-  background-color: #4682b4;
+label {
+  color: #ff3333;
+}
+
+.pickPlayers {
+  border: none;
+  background-color: #ff3333;
   padding: 30px;
+  font-size: 25px;
+  width: 300px;
+  margin-bottom: 100px;
+  margin-top: 150px;
+}
+
+.pickPlayersButtons {
+  text-align: center;
+}
+
+.pickPlayers:hover {
+  background-color: #00e6ac;
+}
+
+h1 {
+  background-color: #00ace6;
+  padding: 20px;
   font-weight: lighter;
   text-align: center;
   color: white;
+  font-size: 100px;
+  margin: -40px;
+}
+
+h2  {
+  color: #ff3333;
 }
 
 .points {
