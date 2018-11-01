@@ -1,9 +1,7 @@
 // Business Logic
-
 var pigDice = new PigDice();
 var player1;
 var player2;
-
 var roll1;
 var roll2;
 
@@ -81,13 +79,11 @@ function diceImg2(roll) {
 }
 
 function computerTurn() {
-  // debugger;
-  setTimeout(roll, 1000);
+  roll();
   if (roll1 === 1 || roll2 === 1) {
-    setTimeout(endTurn, 3000);
+    setTimeout(endTurn, 2000);
   } else {
-    setTimeout(roll, 3000);
-    setTimeout(endTurn, 5000);
+    setTimeout(roll, 2000);
   }
 }
 
@@ -130,6 +126,7 @@ Players.prototype.checkWinStatus = function() {
     if (player1.turn === true) {
       $("#player1").css("background-color", "#00e6ac");
       $(".player1Winner").show();
+      alert("I'm coming for you. - computer");
     } else if (player2.turn === true) {
       $("#player2").css("background-color", "#00e6ac");
       $(".player2Winner").show();
@@ -139,18 +136,15 @@ Players.prototype.checkWinStatus = function() {
 
 
 // User Interface Logic
-
 $(document).ready(function(){
 
   $("#1v1").click(function(){
-    $("#1v1").hide();
-    $("#1vcomputer").hide();
+    $(".pickPlayersButtons").hide();
     $("#players-form").show();
   });
 
   $("#1vcomputer").click(function(){
-    $("#1v1").hide();
-    $("#1vcomputer").hide();
+    $(".pickPlayersButtons").hide();
     $("#players-form").show();
     $("#players-2-form").hide();
   });
