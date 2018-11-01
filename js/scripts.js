@@ -81,9 +81,10 @@ function diceImg2(roll) {
 function computerTurn() {
   roll();
   if (roll1 === 1 || roll2 === 1) {
-    setTimeout(endTurn, 2000);
+    setTimeout(endTurn, 3000);
   } else {
-    setTimeout(roll, 2000);
+    setTimeout(roll, 1000);
+    setTimeout(endTurn, 3000);
   }
 }
 
