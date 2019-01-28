@@ -36,7 +36,8 @@ This website allows users to play the game Pig Dice.
 
 ## Setup/Installation Requirements
 
-* Clone this repository
+* View directly: https://klowe27.github.io/pig-dice/
+* Or, clone this repository: https://github.com/klowe27/pig-dice
 * Open index.html in any browser.
 
 ## Known Bugs

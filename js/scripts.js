@@ -127,7 +127,6 @@ Players.prototype.checkWinStatus = function() {
     if (player1.turn === true) {
       $("#player1").css("background-color", "#00e6ac");
       $(".player1Winner").show();
-      alert("I'm coming for you. - computer");
     } else if (player2.turn === true) {
       $("#player2").css("background-color", "#00e6ac");
       $(".player2Winner").show();
